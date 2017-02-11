@@ -50,8 +50,8 @@ module Lisp
       _, params, expression = expression
       lambda { |*args| execute expression, scope.merge(Hash[params.zip(args)]) }
     when :if
-      _, test, consequent, alternative = expression
-      expression                       = if execute test, scope then consequent else alternative end
+      _, condition, consequent, alternative = expression
+      expression                            = if execute condition, scope then consequent else alternative end
       execute expression, scope
     when :set!
       _, var, expression                     = expression
